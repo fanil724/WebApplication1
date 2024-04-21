@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Academy</title>
+</head>
+<body>
+    <h2>Hello ASP.NET Core</h2>
+
+    <input type="text" class="image" name="test" value="" /><button class="btn">Добавить картинку</button>
+    <div></div>
+
+    <script>
+        document.querySelector(".btn").addEventListener("click", () => {
+            const imageElement = document.createElement('img');
+            imageElement.src = document.querySelector(".image").value;
+            imageElement.alt = 'Альтернативный текст';
+
+            document.querySelector("div").appendChild(imageElement);
+
+        });
+    </script>
+</body>
+</html>

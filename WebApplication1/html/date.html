@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date</title>
+</head>
+
+<style>
+    body {
+        margin: 25px;
+        padding: 0;
+        position: absolute;
+    }
+
+    div {
+        width: 150px;
+        height: 75px;
+        border: 3px;
+        border-radius: 50%;
+        background-color: rgb(145, 145, 133);
+        color: blue;
+        display: table-cell;
+    }
+
+    p {
+        text-align: center;
+        font-size: 23px;
+    }
+</style>
+
+<body>
+    <div>
+        <p>Welcome to ASP.NET Lessons</p>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let currentDate = new Date();
+            document.querySelector("p").textContent = `${currentDate.getDay()}.${currentDate.getMonth()}.${currentDate.getFullYear()}`;
+        });
+    </script>
+</body>
+</body>
+
+</html>

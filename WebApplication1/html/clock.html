@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock</title>
+    <script src="/assets/js/jquery-3.7.0.min.js"></script>
+</head>
+<style>
+    .clock {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        width: 200px;
+        height: 200px;
+        left: 40%;
+        top: 50px;
+        border-radius: 50%;
+        position: relative;
+        display: flex;
+    }
+
+    .hour,
+    .minut,
+    .second {
+        width: 100%;
+        height: 100%;
+        border-radius: 25%;
+
+        margin-top: 5%;
+        margin-bottom: 5%;
+        position: absolute;
+    }
+
+    .hour {
+        height: 80%;
+        width: 6px;
+        left: 48.5%;
+        background: linear-gradient(to bottom, black 50%, transparent 50%);
+        /*  animation: spin 43200s linear infinite;*/
+        margin-top: 10%;
+        margin-bottom: 10%;
+    }
+
+    .minut {
+        height: 90%;
+        width: 4px;
+        left: 49%;
+        background: linear-gradient(to bottom, red 50%, transparent 50%);
+        /* animation: spin 3600s linear infinite;*/
+    }
+
+    .second {
+        height: 90%;
+        width: 2px;
+        left: 49.5%;
+        background: linear-gradient(to bottom, blue 50%, transparent 50%);
+        /* animation: spin 60s linear infinite;*/
+    }
+
+    .sentr {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: black;
+        position: absolute;
+        left: 45%;
+        top: 45%;
+    }
+
+    @keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+</style>
+
+<body>
+    <div class="clock">
+        <div class="container">
+            <img src="https://i.pinimg.com/736x/25/ca/03/25ca0357d474e81a6c4da5c50acd05af.jpg" width="200px"
+                height="200px" alt="clock">
+            <div class="hour"></div>
+            <div class="minut"></div>
+            <div class="second"></div>
+            <div class="sentr"></div>
+        </div>
+    </div>
+
+    <script>
+        var date = new Date();
+        const minut = date.getMinutes();
+        var hours = date.getHours();
+        const sec = date.getSeconds();
+        if (hours > 12) {
+            hours -= 12;
+        }
+
+        var t_sec = 6 * sec;
+        var t_min = 6 * (minut + (1 / 60) * sec);
+        var t_hour = 30 * (hours + (1 / 60) * minut);
+
+
+        document.querySelector(".second").animate([
+            { transform: `rotate(${t_sec}deg)` },
+            { transform: `rotate(${360 + t_sec}deg)` }
+        ], {
+            duration: 60000,
+            iterations: Infinity
+        });
+
+        document.querySelector(".minut").animate([
+            { transform: `rotate(${t_min}deg)` },
+            { transform: `rotate(${360 + t_min}deg)` }
+        ], {
+            duration: 3600000,
+            iterations: Infinity
+        });
+
+        document.querySelector(".hour").animate([
+            { transform: `rotate(${t_hour}deg)` },
+            { transform: `rotate(${360 + t_hour}deg)` }
+        ], {
+            duration: 43200000,
+            iterations: Infinity
+        });
+
+    </script>
+</body>
+
+</html>

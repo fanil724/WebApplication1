@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <h2>User form</h2>
+    <div id="message"></div>
+    <div>
+        <p>Name: <input name="name" id="name" /></p>
+        <p>Age: <input name="age" id="age" type="number" /></p>
+        <p>
+            Languages:  <br>
+            <select multiple="multiple" style="width:100px" name="languages">
+                <option>C#</option>
+                <option>JS</option>
+                <option>C++</option>
+                <option>JAVA</option>
+                <option>Kotlin</option>
+                <option>TypeScript</option>
+                <option>HTML</option>
+                <option>JSON</option>
+            </select>
+        </p>
+        <button id="sendBtn">Send</button>
+    </div>
+
+    <script>
+        document.getElementById("sendBtn").addEventListener("click", send);
+        async function send() {
+            const response = await fetch("/postuser", {
+                method: "POST",
+                headers: { "Accept": "application/json", "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    name: document.getElementById("name").value,
+                    age: document.getElementById("age").value
+                })
+            });
+            const mess = await response.json();    
+            console.log(mess);
+            document.getElementById("message").innerText = mess.text;
+        }
+    </script>
+</body>
+</html>
